@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<root>
+  <item>
+    <name>Allow Shift+WASD keys to behave like arrow keys</name>
+    <identifier>private.allow_esc_with_arrow_keys</identifier>
+    <autogen>__KeyToKey__ KeyCode::W , ModifierFlag::SHIFT_L, KeyCode::CURSOR_UP | ModifierFlag::NONE</autogen>
+    <autogen>__KeyToKey__ KeyCode::A , ModifierFlag::SHIFT_L, KeyCode::CURSOR_LEFT | ModifierFlag::NONE</autogen>
+    <autogen>__KeyToKey__ KeyCode::S , ModifierFlag::SHIFT_L, KeyCode::CURSOR_DOWN | ModifierFlag::NONE</autogen>
+    <autogen>__KeyToKey__ KeyCode::D , ModifierFlag::SHIFT_L, KeyCode::CURSOR_RIGHT | ModifierFlag::NONE</autogen>
+  </item>
+  <item>
+      <name>Private Shifts to Parentheses</name>
+      <appendix>When pressed alone, Left Shift types left paren (</appendix>
+      <appendix>When pressed alone, Right Shift types right paren )</appendix>
+      <appendix>When used with other keys, they're normal Shifts.</appendix>
+      <identifier>private.remap.programmer.shifts_parens</identifier>
+
+      <modifier_not>
+        ModifierFlag::COMMAND_L, ModifierFlag::COMMAND_R,
+        ModifierFlag::CONTROL_L, ModifierFlag::CONTROL_R,
+        ModifierFlag::FN,
+        ModifierFlag::OPTION_L,  ModifierFlag::OPTION_R,
+      </modifier_not>
+
+      <!-- Pushing Shifts together produces () -->
+      <autogen>
+        __KeyToKey__
+        KeyCode::SHIFT_L, ModifierFlag::SHIFT_R,
+        KeyCode::KEY_8, ModifierFlag::SHIFT_L,
+        KeyCode::KEY_9, ModifierFlag::SHIFT_L,
+      </autogen>
+      <autogen>
+        __KeyToKey__
+        KeyCode::SHIFT_R, ModifierFlag::SHIFT_L,
+        KeyCode::KEY_9, ModifierFlag::SHIFT_L,
+        KeyCode::KEY_8, ModifierFlag::SHIFT_L,
+      </autogen>
+
+      <!-- This is the basic mapping. -->
+      <autogen>
+        __KeyOverlaidModifier__
+        KeyCode::SHIFT_R,
+        KeyCode::SHIFT_R,
+        KeyCode::KEY_9, ModifierFlag::SHIFT_L,
+      </autogen>
+      <autogen>
+        __KeyOverlaidModifier__
+        KeyCode::SHIFT_L,
+        KeyCode::SHIFT_L,
+        KeyCode::KEY_8, ModifierFlag::SHIFT_R,
+      </autogen>
+    </item>
+    <item>
+      <name>Private Controls to Angle Brackets</name>
+      <appendix>When pressed alone, Left Control types less symbol &lt;</appendix>
+      <appendix>When pressed alone, Right Control types greater symbol &gt;</appendix>
+      <appendix>When used with other keys, they're normal Controls.</appendix>
+      <identifier>private.remap.programmer.controls_angle_brackets</identifier>
+      <!-- This is the basic mapping. -->
+      <autogen>__KeyOverlaidModifier__ KeyCode::CONTROL_R, ModifierFlag::CONTROL_R | ModifierFlag::NONE, KeyCode::CONTROL_R, KeyCode::KEY_9, ModifierFlag::SHIFT_L | ModifierFlag::OPTION_L</autogen>
+      <autogen>__KeyOverlaidModifier__ KeyCode::CONTROL_L, ModifierFlag::CONTROL_L | ModifierFlag::NONE, KeyCode::CONTROL_L, KeyCode::KEY_8, ModifierFlag::SHIFT_L | ModifierFlag::OPTION_L</autogen>
+      <autogen>__KeyOverlaidModifier__ KeyCode::CONTROL_R, ModifierFlag::CAPSLOCK, KeyCode::CONTROL_R, KeyCode::KEY_9, ModifierFlag::SHIFT_L | ModifierFlag::OPTION_L</autogen>
+      <autogen>__KeyOverlaidModifier__ KeyCode::CONTROL_L, ModifierFlag::CAPSLOCK, KeyCode::CONTROL_L, KeyCode::KEY_8, ModifierFlag::SHIFT_L | ModifierFlag::OPTION_L</autogen>
+      <!-- Pushing Controls together produces <> -->
+      <autogen>__KeyToKey__ KeyCode::CONTROL_L, ModifierFlag::CONTROL_R, KeyCode::KEY_9, ModifierFlag::SHIFT_L, KeyCode::KEY_8, ModifierFlag::SHIFT_L | ModifierFlag::OPTION_L</autogen>
+      <autogen>__KeyToKey__ KeyCode::CONTROL_R, ModifierFlag::CONTROL_L, KeyCode::KEY_8, ModifierFlag::SHIFT_L, KeyCode::KEY_9, ModifierFlag::SHIFT_L | ModifierFlag::OPTION_L</autogen>
+    </item>
+</root>
